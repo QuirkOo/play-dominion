@@ -15,7 +15,8 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, web
     $scope.throws = 0;
     $scope.cards = [];
 
-    webSocket.register(function(data) {
+    webSocket.register(function(message) {
+        var data = JSON.parse(message);
         $scope.actions = data.actions;
         $scope.buys = data.buys;
         $scope.gold = data.gold;
