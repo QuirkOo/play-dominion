@@ -3,6 +3,8 @@ package controllers
 import play.api.libs.iteratee.{Concurrent, Iteratee}
 import play.api.mvc._
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 object Application extends Controller {
 
   def index = Action {
