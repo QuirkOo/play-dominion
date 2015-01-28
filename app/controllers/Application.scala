@@ -18,6 +18,8 @@ object Application extends Controller {
 
     GameEngine.AddPlayer(channel)
 
+    channel push "hello, dude"
+
     val in = Iteratee.foreach[String] {
       msg => println(msg)
         channel push("Got message: " + msg)

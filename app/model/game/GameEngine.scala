@@ -15,7 +15,7 @@ class GameEngine {
 
 object GameEngine {
 
-  val numPlayers: Int = 3;
+  val numPlayers: Int = 3
 
   val players: mutable.Map[Int, Player] = mutable.Map[Int, Player] ()
 
