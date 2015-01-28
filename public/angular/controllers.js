@@ -5,11 +5,6 @@
 var dominionApp = angular.module('dominionApp', []);
 
 dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
-    $scope.name = 'World';
-
-    $scope.greet = function() {
-        $window.alert('Hello ' + $scope.name);
-    };
 }]);
 
 dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
