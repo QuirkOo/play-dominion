@@ -30,7 +30,8 @@ dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', function($scope, we
     $scope.cards = [];
 
     webSocket.register(function(message) {
-       var data = JSON.parse(message);
+        console.log("To parse: " + message.data)
+       var data = JSON.parse(message.data);
         $scope.cards = data.table;
     });
 }]);
