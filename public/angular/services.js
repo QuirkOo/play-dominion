@@ -23,6 +23,7 @@ dominionApp.factory('webSocket', function() {
     };
 
     connection.onmessage = function(message) {
+        console.log('Received message: ' + message);
         for(listener in this.listeners) {
             listener(message);
         }
