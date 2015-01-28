@@ -3,27 +3,42 @@
 
     <main class="container-fluid" ng-controller="MainCtrl">
 
-            <section class="col-xs-2" ng-controller="CardCtrl">
-                <h1>Dominion</h1>
-                <p><strong>Actions:</strong> <span class="label label-default pull-right">{{actions}}</span></p>
-                <p><strong>Buys:</strong> <span class="label label-default pull-right">{{buys}}</span></p>
-                <p><strong>Gold:</strong> <span class="label label-default pull-right">{{gold}}</span></p>
-                <p>Discards: <span class="label label-default pull-right">{{rejects}}</span></p>
-                <p>You can trash <span class="label label-default pull-right">{{throws}}</span></p>
-                <p>Your cards:</p>
-                <ul class="list-unstyled" ng-repeat="card in cards">
-                    <li class="panel panel-default">
+        <section class="col-md-2 col-xs-4" ng-controller="CardCtrl">
+            <h1>Dominion</h1>
+            <p><strong>Actions:</strong> <span class="label label-default pull-right" ng-bind="actions"/></p>
+            <p><strong>Buys:</strong> <span class="label label-default pull-right" ng-bind="buys"/>></p>
+            <p><strong>Gold:</strong> <span class="label label-default pull-right" ng-bind="gold"/></p>
+            <p>Discards: <span class="label label-default pull-right" ng-bind="rejects"/></p>
+            <p>You can trash <span class="label label-default pull-right" ng-bind="throws"/></p>
+            <p>Your cards:</p>
+            <ul class="list-unstyled" ng-repeat="card in cards track by $index">
+                <li class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#hand{{card.name}}" ng-bind="card.name"></a>
+                        <span class="pull-right" ng-bind="card.type"/>
+                    </div>
+                    <div class="panel-body collapse" id="hand{{card.name}}" ng-bind="card.desc"></div>
+                </li>
+            </ul>
+        </section>
+
+
+        <section class="col-xs-8 col-md-10" ng-controller="TableCtrl">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="card in cards track by $index">
+                    <section class="panel panel-default">
                         <div class="panel-heading">
-                            <a data-toggle="collapse" href="#{{card.name}}">{{card.name}}</a>
+                            <span ng-bind="card.name"></span>
+                            <span class="pull-right" ng-bind="card.cost"></span>
                         </div>
-                        <div class="panel-body collapse" id="{{card.name}}">
-                            {{card.desc}}
+                        <div class="panel-body">
+                            <p ng-bind="card.desc"></p>
+                            <button class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
                         </div>
-                    </li>
-                </ul>
-            </section>
-            <section class="col-xs-10" ng-controller="TableCtrl">
-            </section>
+                    </section>
+                </div>
+            </div>
+        </section>
 
     </main>
 

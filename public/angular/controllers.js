@@ -15,23 +15,28 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, web
     $scope.throws = 0;
     $scope.cards = [];
 
-    webSocket.register(function(data) {
+    webSocket.register(function(message) {
+        var data = JSON.parse(message);
+        console.log(data);
         $scope.actions = data.actions;
         $scope.buys = data.buys;
         $scope.gold = data.gold;
         $scope.rejects = data.rejects;
         $scope.throws = data.throws;
-        $scope.cards = data.cards;
+        $scope.cards = data.hand;
+
+        $scope.$apply();
     });
 }]);
 
 dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
 
-    $scope.cards = [];
+    $scope.cards = [{name: "Cellar", desc: "Buy something", cost: 2}, {name:"A", desc:"Dupa", cost:3},{name:"A", desc:"Dupa", cost:3},{name:"A", desc:"Dupa", cost:3},{name:"A", desc:"Dupa", cost:3},{name:"A", desc:"Dupa", cost:3},{name:"A", desc:"Dupa", cost:3}];
 
     webSocket.register(function(message) {
-        console.log("To parse: " + message)
        var data = JSON.parse(message);
         $scope.cards = data.table;
+
+        $scope.$apply();
     });
 }]);
