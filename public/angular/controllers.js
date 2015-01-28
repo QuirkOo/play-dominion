@@ -17,12 +17,13 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, web
 
     webSocket.register(function(message) {
         var data = JSON.parse(message);
+        console.log(data);
         $scope.actions = data.actions;
         $scope.buys = data.buys;
         $scope.gold = data.gold;
         $scope.rejects = data.rejects;
         $scope.throws = data.throws;
-        $scope.cards = data.cards;
+        $scope.cards = data.hand;
     });
 }]);
 
@@ -31,8 +32,7 @@ dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', function($scope, we
     $scope.cards = [];
 
     webSocket.register(function(message) {
-        console.log("To parse: " + message.data)
-       var data = JSON.parse(message.data);
+       var data = JSON.parse(message);
         $scope.cards = data.table;
     });
 }]);
