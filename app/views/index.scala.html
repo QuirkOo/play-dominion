@@ -11,19 +11,26 @@
             <p>Discards: <span class="label label-default pull-right" ng-bind="rejects"/></p>
             <p>You can trash <span class="label label-default pull-right" ng-bind="throws"/></p>
             <p>Your cards:</p>
-            <ul class="list-unstyled" ng-repeat="card in cards">
+            <ul class="list-unstyled" ng-repeat="card in cards track by $index">
                 <li class="panel panel-default">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" href="#{{card.name}}" ng-bind="card.name"/>
+                        <a data-toggle="collapse" href="#hand{{card.name}}" ng-bind="card.name"/>
                     </div>
-                    <div class="panel-body collapse" id="{{card.name}}" ng-bind="card.desc"/>
+                    <div class="panel-body collapse" id="hand{{card.name}}" ng-bind="card.desc"/>
                 </li>
             </ul>
         </section>
 
 
         <section class="col-xs-10" ng-controller="TableCtrl">
-
+            <div class="row">
+                <div class="panel panel-default " ng-repeat="card in cards track by $index">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#table{{card.name}}" ng-bind="card.name"/>
+                    </div>
+                    <div class="panel-body collapse" id="table{{card.name}}" ng-bind="card.desc"/>
+                </div>
+            </div>
         </section>
 
     </main>

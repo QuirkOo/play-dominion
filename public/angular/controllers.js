@@ -24,6 +24,8 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, web
         $scope.rejects = data.rejects;
         $scope.throws = data.throws;
         $scope.cards = data.hand;
+
+        $scope.$apply();
     });
 }]);
 
@@ -34,5 +36,7 @@ dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', function($scope, we
     webSocket.register(function(message) {
        var data = JSON.parse(message);
         $scope.cards = data.table;
+
+        $scope.$apply();
     });
 }]);
