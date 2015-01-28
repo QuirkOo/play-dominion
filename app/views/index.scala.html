@@ -1,7 +1,23 @@
-@(message: String)
 
-@main("Welcome to Play") {
+@main("Dominion"){
 
-    @play20.welcome(message)
+    <main class="container-fluid" ng-controller="MainCtrl">
+        <div class="row">
+            <section class="col-xs-4" ng-controller="CardCtrl">
+                <h1>Dominion</h1>
+                <p>Actions: {{actions}}</p>
+                <p>Buys: {{buys}}</p>
+                <p>Gold: {{gold}}</p>
+                <p>Discards: {{rejects}}</p>
+                <p>You can trash {{throws}} cards</p>
+                <p>Your cards:</p>
+                <ul ng-repeat="card in cards">
+                    <li>{{card}}</li>
+                </ul>
+            </section>
+            <section class="col-xs-8" ng-controller="TableCtrl">
+            </section>
+        </div>
+    </main>
 
 }
