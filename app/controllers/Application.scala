@@ -9,7 +9,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object Application extends Controller {
 
   def index = Action {
-    Ok(views.html.index.render("Your new application is ready, biatch."))
+    Ok(views.html.index.render())
   }
 
   def websocket =  WebSocket.using[String] { request =>

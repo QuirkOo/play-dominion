@@ -1,3 +1,30 @@
-@(message: String)
 
-@main("Welcome to Play", "It seems to work")
+@main("Dominion") {
+
+    <main class="container-fluid" ng-controller="MainCtrl">
+
+            <section class="col-xs-2" ng-controller="CardCtrl">
+                <h1>Dominion</h1>
+                <p><strong>Actions:</strong> <span class="label label-default pull-right">{{actions}}</span></p>
+                <p><strong>Buys:</strong> <span class="label label-default pull-right">{{buys}}</span></p>
+                <p><strong>Gold:</strong> <span class="label label-default pull-right">{{gold}}</span></p>
+                <p>Discards: <span class="label label-default pull-right">{{rejects}}</span></p>
+                <p>You can trash <span class="label label-default pull-right">{{throws}}</span></p>
+                <p>Your cards:</p>
+                <ul class="list-unstyled" ng-repeat="card in cards">
+                    <li class="panel panel-default">
+                        <div class="panel-heading">
+                            <a data-toggle="collapse" href="#{{card.name}}">{{card.name}}</a>
+                        </div>
+                        <div class="panel-body collapse" id="{{card.name}}">
+                            {{card.desc}}
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="col-xs-10" ng-controller="TableCtrl">
+            </section>
+
+    </main>
+
+}
