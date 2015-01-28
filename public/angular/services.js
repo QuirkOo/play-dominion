@@ -23,9 +23,9 @@ dominionApp.factory('webSocket', function() {
     };
 
     connection.onmessage = function(message) {
-        console.log('Received message: ' + message);
-        for(listener in connection.listeners) {
-            listener(message);
+        console.log(message);
+        for(var i = 0; i < connection.listeners.length; i++) {
+            connection.listeners[i](message.data);
         }
     };
 
