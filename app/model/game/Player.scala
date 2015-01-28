@@ -32,9 +32,9 @@ class Player(out: Concurrent.Channel[String]) {
 
   def getState: String = {
 
-    ("{'actions': " + i2s(actions) + ", 'buys': " + i2s(buys) + ", 'gold': " + i2s(gold) + ", 'rejects': " +
-      i2s(rejects) + ", 'throws': " + i2s(throws) + ", 'hand': " + getHandJSON + "}").replace("'", "\"")
-
+    var playerState = ("{'actions': " + i2s(actions) + ", 'buys': " + i2s(buys) + ", 'gold': " + i2s(gold) + ", 'rejects': " + i2s(rejects) + ", 'throws': " + i2s(throws) + ", 'hand': " + getHandJSON + "}").replace("'", "\"")
+    var tableState: String = Table.getTableState
+    "{" + "\"" + "state" + "\"" + ":" + playerState + ", " + "\"table" + "\"" + ":" + tableState + "}"
   }
 
   private def getHandJSON: String = {

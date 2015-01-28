@@ -42,4 +42,59 @@ object Card {
 
     cardToReturn
   }
+
+  def getDescr(cardName: String): String = {
+    cardName match {
+
+      case "grosz" => "1 sztuka zlota"
+      case "srebrnik" => "2 sztuki zlota"
+      case "zlocisz" => "3 sztuki zlota"
+
+      case "prowincja" => "8 pt zwyciestwa"
+      case "posiadlosc" => "5 pkt zwyciestwa"
+      case "domostwo" => "3 pkt zwyciestwa"
+
+      case "wioska" => "Dobierz jedna karte. Zyskujesz dodatkowe 2 akcje"
+      case "drwal" => "Plus jeden zakup, dodatkowo 2 sztuki zlota"
+      case "kanclerz" => "Plus dwie sztuki zlota, mozesz natychmiast wyrzucic jedna karte na smietnisko"
+
+    }
+  }
+
+  def getCost(cardName: String) : Int = {
+    cardName match {
+
+      case "grosz" => 1
+      case "srebrnik" => 3
+      case "zlocisz" => 6
+
+      case "prowincja" => 8
+      case "posiadlosc" => 5
+      case "domostwo" => 3
+
+      case "wioska" => 3
+      case "drwal" => 3
+      case "kanclerz" => 4
+
+    }
+  }
+
+  def getType(cardName: String) : String = {
+    cardName match {
+
+      case "grosz" => "Zloto"
+      case "srebrnik" => "Zloto"
+      case "zlocisz" => "Zloto"
+
+      case "prowincja" => "Zwyciestwo"
+      case "posiadlosc" => "Zwyciestwo"
+      case "domostwo" => "Zwyciestwo"
+
+      case "wioska" => "Action"
+      case "drwal" => "Action"
+      case "kanclerz" => "Action"
+
+    }
+  }
+
 }

@@ -42,4 +42,8 @@ object GameEngine {
 
   }
 
+  def handleMessage(msg: String) = {
+
+  }
+
 }
