@@ -11,13 +11,14 @@
             <p>Discards: <span class="label label-default pull-right" ng-bind="rejects"/></p>
             <p>You can trash <span class="label label-default pull-right" ng-bind="throws"/></p>
             <p>Your cards:</p>
-            <ul class="list-unstyled" ng-repeat="card in cards track by $index">
-                <li class="panel panel-default">
+            <ul class="list-unstyled panel-group" id="accordion">
+                <li class="panel panel-default" ng-repeat="card in cards track by $index">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" href="#hand{{card.name}}" ng-bind="card.name"></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#hand{{card.name}}" ng-bind="card.name"></a>
                         <span class="pull-right" ng-bind="card.type"/>
                     </div>
-                    <div class="panel-body collapse" id="hand{{card.name}}" ng-bind="card.desc"></div>
+                    <div class="panel-collapse collapse" id="hand{{card.name}}">
+                    <div class="panel-body" ng-bind="card.desc"></div>
                 </li>
             </ul>
         </section>
