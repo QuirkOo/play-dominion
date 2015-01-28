@@ -1,5 +1,6 @@
 package controllers
 
+import model.game.GameEngine
 import play.api.libs.iteratee.{Concurrent, Iteratee}
 import play.api.mvc._
 
@@ -14,6 +15,10 @@ object Application extends Controller {
   def websocket =  WebSocket.using[String] { request =>
 
     val (out,channel) = Concurrent.broadcast[String]
+
+    GameEngine.AddPlayer(channel)
+
+    channel push "hello, dude"
 
     val in = Iteratee.foreach[String] {
       msg => println(msg)
