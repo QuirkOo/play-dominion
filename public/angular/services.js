@@ -17,14 +17,14 @@ dominionApp.factory('webSocket', function() {
         console.log('Error opening connection: ' + e.message);
     };
 
-    connection.listeners = []
+    connection.listeners = [];
     connection.register = function(callback) {
-        this.listeners.push(callback);
+        connection.listeners.push(callback);
     };
 
     connection.onmessage = function(message) {
         console.log('Received message: ' + message);
-        for(listener in this.listeners) {
+        for(listener in connection.listeners) {
             listener(message);
         }
     };
