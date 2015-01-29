@@ -31,7 +31,7 @@
                 <h2>Your turn!</h2>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="card in table.cards | orderBy:card.type track by $index">
+                <div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="card in table.cards | orderBy: card.type track by $index">
                     <section class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title" >
@@ -42,7 +42,7 @@
                         </div>
                         <div class="panel-body">
                             <p ng-bind="card.desc"></p>
-                            <button ng-disabled="funds < card.cost || buys == 0" class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
+                            <button ng-disabled="gold < card.cost || buys == 0" class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
                         </div>
                     </section>
                 </div>
