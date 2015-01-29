@@ -52,6 +52,7 @@ object GameEngine {
       System.out.println("Card do buy: " + cardName)
       players(count).addCard(cardName)
       Table.pickCard(cardName)
+      nextTurn()
     }
   }
 
