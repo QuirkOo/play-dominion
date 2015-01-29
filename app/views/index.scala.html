@@ -36,7 +36,7 @@
                         </div>
                         <div class="panel-body">
                             <p ng-bind="card.desc"></p>
-                            <button ng-disabled="funds < card.cost" class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
+                            <button ng-disabled="funds < card.cost || buys == 0" class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
                         </div>
                     </section>
                 </div>

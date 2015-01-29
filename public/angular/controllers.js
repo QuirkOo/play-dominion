@@ -7,10 +7,10 @@ var dominionApp = angular.module('dominionApp', []);
 dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
 }]);
 
-dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'funds', function($scope, webSocket, funds) {
+dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'money', function($scope, webSocket, money) {
     $scope.actions = 1;
-    $scope.buys = 1;
-    $scope.gold = funds;
+    $scope.buys = money.buys;
+    $scope.gold = money.funds;
     $scope.rejects = 0;
     $scope.throws = 0;
     $scope.cards = [{name: 'Copper', desc: 'Worth 1', type: 'treasure'}, {name: 'Estate', desc: 'Worth 1 Victory Point', type: 'victory'}, {name: 'Cellar', desc:'Dupa', type: 'action'}];
@@ -19,7 +19,6 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'funds', function($s
         var data = JSON.parse(message);
         console.log(data);
         $scope.actions = data.actions;
-        $scope.buys = data.buys;
         $scope.rejects = data.rejects;
         $scope.throws = data.throws;
         $scope.cards = data.hand;
@@ -35,10 +34,11 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'funds', function($s
 
 }]);
 
-dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', 'funds', function($scope, webSocket, funds) {
+dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', 'money', function($scope, webSocket, money) {
 
     $scope.cards = [{name: 'Cellar', desc: 'Buy something', cost: 2}, {name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
-    $scope.funds = funds;
+    $scope.funds = money.funds;
+    $scope.buys = money.buys;
 
     webSocket.register(function(message) {
        var data = JSON.parse(message);
@@ -48,7 +48,7 @@ dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', 'funds', function($
     });
 
     $scope.buy = function(card) {
-        if (funds < card.cost) return;
+        if (funds < card.cost || buys == 0) return;
         var data = { action: 'buy', cardName: card.name };
         webSocket.send(JSON.stringify(data));
     };
