@@ -10,7 +10,7 @@ dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, web
     $scope.gold = 0;
     $scope.rejects = 0;
     $scope.throws = 0;
-    $scope.cards = [{name: 'Copper', desc: 'Worth 1', type: 'treasure'}, {name: 'Estate', desc: 'Worth 1 Victory Point', type: 'victory'}, {name: 'Cellar', desc:'Dupa', type: 'action'}];
+    $scope.cards = [];
 
     webSocket.register(function(message) {
         var data = JSON.parse(message).state;
@@ -32,7 +32,7 @@ dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, web
     }
 
     $scope.table = {}
-    $scope.table.cards = [{name: 'Cellar', desc: 'Buy something', cost: 0, type:'action'}, {name:'A', desc:'Dupa', cost:3, type:'treasure'},{name:'A', desc:'Dupa', cost:3, type:'victory'},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
+    $scope.table.cards = [];
 
     webSocket.register(function(message) {
        var data = JSON.parse(message);
@@ -43,6 +43,7 @@ dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, web
 
     $scope.buy = function(card) {
         var data = { action: 'buy', cardName: card.name };
+        console.log(JSON.stringify(data));
         webSocket.send(JSON.stringify(data));
     };
 }]);
