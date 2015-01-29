@@ -32,7 +32,7 @@ dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, web
     }
 
     $scope.table = {}
-    $scope.table.cards = [{name: 'Cellar', desc: 'Buy something', cost: 0}, {name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
+    $scope.table.cards = [{name: 'Cellar', desc: 'Buy something', cost: 0, type:'action'}, {name:'A', desc:'Dupa', cost:3, type:'treasure'},{name:'A', desc:'Dupa', cost:3, type:'victory'},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
 
     webSocket.register(function(message) {
        var data = JSON.parse(message);
