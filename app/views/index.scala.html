@@ -7,7 +7,7 @@
             <h1>Dominion</h1>
             <p><strong>Actions:</strong> <span class="label label-default pull-right" ng-bind="actions"/></p>
             <p><strong>Buys:</strong> <span class="label label-default pull-right" ng-bind="buys"/>></p>
-            <p><strong>Gold:</strong> <span class="label label-default pull-right" ng-bind="gold"/></p>
+            <p><strong>Gold:</strong> <span class="label label-warning pull-right" ng-bind="gold"/></p>
             <p>Discards: <span class="label label-default pull-right" ng-bind="rejects"/></p>
             <p>You can trash <span class="label label-default pull-right" ng-bind="throws"/></p>
             <p>Your cards:</p>
@@ -15,7 +15,8 @@
                 <li class="panel panel-default" ng-repeat="card in cards track by $index">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#accordion" href="#hand{{card.name}}" ng-bind="card.name"></a>
-                        <span class="pull-right" ng-bind="card.type"/>
+                        <button ng-show="card.type == 'action'" class="btn btn-primary pull-right" ng-click="play(card)">Play</button>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="panel-collapse collapse" id="hand{{card.name}}">
                     <div class="panel-body" ng-bind="card.desc"></div>
@@ -29,8 +30,9 @@
                 <div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="card in cards track by $index">
                     <section class="panel panel-default">
                         <div class="panel-heading">
-                            <span ng-bind="card.name"></span>
-                            <span class="pull-right" ng-bind="card.cost"></span>
+                            <h4 class="panel-title" > {{card.name}}
+                                <span class="label label-warning pull-right" ng-bind="card.cost"></span>
+                            </h4>
                         </div>
                         <div class="panel-body">
                             <p ng-bind="card.desc"></p>

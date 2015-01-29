@@ -31,3 +31,4 @@ dominionApp.factory('webSocket', function() {
 
     return connection;
 });
+
