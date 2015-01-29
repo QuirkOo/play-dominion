@@ -32,3 +32,16 @@ dominionApp.factory('webSocket', function() {
     return connection;
 });
 
+dominionApp.factory('money', [ 'webSocket', function(webSocket) {
+    var money = {};
+    money.funds = 0;
+    money.buys = 1;
+
+    webSocket.register(function(message) {
+        var data = JSON.parse(message);
+        money.funds = data.gold;
+        money.buys = data.buys;
+    });
+
+    return money;
+}]);

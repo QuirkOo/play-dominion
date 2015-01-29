@@ -15,11 +15,12 @@
                 <li class="panel panel-default" ng-repeat="card in cards track by $index">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#accordion" href="#hand{{card.name}}" ng-bind="card.name"></a>
-                        <button ng-show="card.type == 'action'" class="btn btn-primary pull-right" ng-click="play(card)">Play</button>
+                        <button ng-disabled="actions == 0" ng-show="card.type == 'action'" class="btn btn-primary pull-right" ng-click="play(card)">Play</button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-collapse collapse" id="hand{{card.name}}">
-                    <div class="panel-body" ng-bind="card.desc"></div>
+                        <div class="panel-body" ng-bind="card.desc"></div>
+                    </div>
                 </li>
             </ul>
         </section>
@@ -36,7 +37,7 @@
                         </div>
                         <div class="panel-body">
                             <p ng-bind="card.desc"></p>
-                            <button class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
+                            <button ng-disabled="funds < card.cost || buys == 0" class="btn btn-primary pull-right" ng-click="buy(card)">Buy</button>
                         </div>
                     </section>
                 </div>

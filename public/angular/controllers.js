@@ -7,10 +7,10 @@ var dominionApp = angular.module('dominionApp', []);
 dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
 }]);
 
-dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
+dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'money', function($scope, webSocket, money) {
     $scope.actions = 1;
-    $scope.buys = 1;
-    $scope.gold = 0;
+    $scope.buys = money.buys;
+    $scope.gold = money.funds;
     $scope.rejects = 0;
     $scope.throws = 0;
     $scope.cards = [{name: 'Copper', desc: 'Worth 1', type: 'treasure'}, {name: 'Estate', desc: 'Worth 1 Victory Point', type: 'victory'}, {name: 'Cellar', desc:'Dupa', type: 'action'}];
@@ -19,8 +19,6 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, web
         var data = JSON.parse(message);
         console.log(data);
         $scope.actions = data.actions;
-        $scope.buys = data.buys;
-        $scope.gold = data.gold;
         $scope.rejects = data.rejects;
         $scope.throws = data.throws;
         $scope.cards = data.hand;
@@ -36,9 +34,11 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', function($scope, web
 
 }]);
 
-dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', function($scope, webSocket) {
+dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', 'money', function($scope, webSocket, money) {
 
-    $scope.cards = [{name: 'Cellar', desc: 'Buy something', cost: 2}, {name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
+    $scope.cards = [{name: 'Cellar', desc: 'Buy something', cost: 0}, {name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
+    $scope.funds = money.funds;
+    $scope.buys = money.buys;
 
     webSocket.register(function(message) {
        var data = JSON.parse(message);
