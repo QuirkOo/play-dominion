@@ -36,7 +36,7 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'money', function($s
 
 dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', 'money', function($scope, webSocket, money) {
 
-    $scope.cards = [{name: 'Cellar', desc: 'Buy something', cost: 2}, {name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
+    $scope.cards = [{name: 'Cellar', desc: 'Buy something', cost: 0}, {name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3},{name:'A', desc:'Dupa', cost:3}];
     $scope.funds = money.funds;
     $scope.buys = money.buys;
 
@@ -48,7 +48,6 @@ dominionApp.controller('TableCtrl', [ '$scope', 'webSocket', 'money', function($
     });
 
     $scope.buy = function(card) {
-        if (funds < card.cost || buys == 0) return;
         var data = { action: 'buy', cardName: card.name };
         webSocket.send(JSON.stringify(data));
     };

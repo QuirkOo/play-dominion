@@ -18,7 +18,7 @@
                         <button ng-disabled="actions == 0" ng-show="card.type == 'action'" class="btn btn-primary pull-right" ng-click="play(card)">Play</button>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="panel-collapse collapse" id="hand{{card.name}}">
+                    <div class="panel-collapse collapse" id="hand{{card.name}}"></div>
                     <div class="panel-body" ng-bind="card.desc"></div>
                 </li>
             </ul>
