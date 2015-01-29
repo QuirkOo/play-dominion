@@ -46,6 +46,17 @@ class Player(out: Concurrent.Channel[String]) {
 
   private def getHandJSON: String = {
     "[" + hand.dropRight(1).map("'" + _.name + "'" + ", ").reduce((a: String, b:String) => a + b) + "'" + hand.last.name + "'" + "]"
+
+    var res: String = new String("[")
+    for(key:String <- hand.map(_.name)) {
+      var element: String = "{"
+      element = element.concat(kv("name", key)).concat(", ")
+        .concat(kv("desc", Card.getDescr(key))).concat(", ")
+        .concat(kv("type", Card.getType(key))).concat(", ")
+        .concat(kv("cost", Integer.toString(Card.getCost(key)))).concat("}, ")
+      res = res.concat(element)
+    }
+    res.substring(0, res.length - 2).concat("]")
   }
 
   private def i2s(int: Int): String = {
@@ -108,6 +119,14 @@ class Player(out: Concurrent.Channel[String]) {
 
   def sendToBrowser() = {
     channel push getState
+  }
+
+  def kv(k: String, v: String) = {
+    q(k) + ": " + q(v)
+  }
+
+  def q(s: String) : String = {
+    "\"" + s + "\""
   }
 
 }
