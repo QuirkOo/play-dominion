@@ -3,7 +3,7 @@
 
     <main class="container-fluid" ng-controller="MainCtrl">
 
-        <section class="col-md-2 col-xs-4" ng-controller="CardCtrl">
+        <section class="col-md-2 col-xs-4">
             <h1>Dominion</h1>
             <p><strong>Actions:</strong> <span class="label label-default pull-right" ng-bind="actions"/></p>
             <p><strong>Buys:</strong> <span class="label label-default pull-right" ng-bind="buys"/>></p>
@@ -26,9 +26,9 @@
         </section>
 
 
-        <section class="col-xs-8 col-md-10" ng-controller="TableCtrl">
+        <section class="col-xs-8 col-md-10">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="card in cards track by $index">
+                <div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="card in table.cards track by $index">
                     <section class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title" > {{card.name}}
