@@ -20,6 +20,9 @@ object GameEngine {
 
   def startGame() = {
     count = 0
+    for(n <- 1 to numPlayers) {
+      players(n).newHand()
+    }
     nextTurn()
   }
 
@@ -45,7 +48,10 @@ object GameEngine {
     if( msg.replace(" ", "").contains("\"action\":\"buy\"") ) {
       var cardName: String = msg.replace(" ", "").split(",")(1)
       cardName = cardName.replace("\"", "").split(":")(1)
-      players(count)
+      cardName = cardName.replace("}", "").toLowerCase
+      System.out.println("Card do buy: " + cardName)
+      players(count).addCard(cardName)
+      Table.pickCard(cardName)
     }
   }
 

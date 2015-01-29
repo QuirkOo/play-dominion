@@ -82,17 +82,17 @@ object Card {
   def getType(cardName: String) : String = {
     cardName match {
 
-      case "grosz" => "Zloto"
-      case "srebrnik" => "Zloto"
-      case "zlocisz" => "Zloto"
+      case "grosz" => "gold"
+      case "srebrnik" => "gold"
+      case "zlocisz" => "gold"
 
-      case "prowincja" => "Zwyciestwo"
-      case "posiadlosc" => "Zwyciestwo"
-      case "domostwo" => "Zwyciestwo"
+      case "prowincja" => "victory"
+      case "posiadlosc" => "victory"
+      case "domostwo" => "victory"
 
-      case "wioska" => "Action"
-      case "drwal" => "Action"
-      case "kanclerz" => "Action"
+      case "wioska" => "action"
+      case "drwal" => "action"
+      case "kanclerz" => "action"
 
     }
   }
