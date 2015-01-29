@@ -23,7 +23,7 @@ object Table {
     var res: String = new String("[")
     for(key:String <- tableMap.keySet) {
       var element: String = "{"
-      element = element.concat(kv("name", "key")).concat(", ")
+      element = element.concat(kv("name", key)).concat(", ")
         .concat(kv("desc", Card.getDescr(key))).concat(", ")
         .concat(kv("type", Card.getType(key))).concat(", ")
         .concat(kv("cost", Integer.toString(Card.getCost(key)))).concat(", ")

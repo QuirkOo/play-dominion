@@ -37,6 +37,13 @@ class Player(out: Concurrent.Channel[String]) {
     "{" + "\"" + "state" + "\"" + ":" + playerState + ", " + "\"table" + "\"" + ":" + tableState + "}"
   }
 
+  def getEmptyState: String = {
+
+    var playerState = ("{'actions': " + i2s(0) + ", 'buys': " + i2s(0) + ", 'gold': " + i2s(0) + ", 'rejects': " + i2s(0) + ", 'throws': " + i2s(0) + ", 'hand': " + getHandJSON + "}").replace("'", "\"")
+    var tableState: String = Table.getTableState
+    "{" + "\"" + "state" + "\"" + ":" + playerState + ", " + "\"table" + "\"" + ":" + tableState + "}"
+  }
+
   private def getHandJSON: String = {
     "[" + hand.dropRight(1).map("'" + _.name + "'" + ", ").reduce((a: String, b:String) => a + b) + "'" + hand.last.name + "'" + "]"
   }
@@ -93,6 +100,10 @@ class Player(out: Concurrent.Channel[String]) {
     newHand()
     setInitialState()
     sendToBrowser()
+  }
+
+  def notYourMove() = {
+    channel push getEmptyState
   }
 
   def sendToBrowser() = {
