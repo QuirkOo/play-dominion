@@ -8,7 +8,7 @@ dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, web
 }]);
 
 dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'money', function($scope, webSocket, money) {
-    $scope.actions = 1;
+    $scope.actions = 0;
     $scope.buys = money.buys;
     $scope.gold = money.funds;
     $scope.rejects = 0;
@@ -18,10 +18,10 @@ dominionApp.controller('CardCtrl', [ '$scope', 'webSocket', 'money', function($s
     webSocket.register(function(message) {
         var data = JSON.parse(message);
         console.log(data);
-        $scope.actions = data.actions;
-        $scope.rejects = data.rejects;
-        $scope.throws = data.throws;
-        $scope.cards = data.hand;
+        $scope.actions = data.actions || 0;
+        $scope.rejects = data.rejects || 0;
+        $scope.throws = data.throws || 0;
+        $scope.cards = data.handZz;
 
         $scope.$apply();
     });

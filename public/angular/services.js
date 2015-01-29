@@ -35,12 +35,12 @@ dominionApp.factory('webSocket', function() {
 dominionApp.factory('money', [ 'webSocket', function(webSocket) {
     var money = {};
     money.funds = 0;
-    money.buys = 1;
+    money.buys = 0;
 
     webSocket.register(function(message) {
         var data = JSON.parse(message);
-        money.funds = data.gold;
-        money.buys = data.buys;
+        money.funds = data.gold || 0;
+        money.buys = data.buys || 0;
     });
 
     return money;
