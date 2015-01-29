@@ -13,7 +13,7 @@ dominionApp.controller('MainCtrl', [ '$scope', 'webSocket', function($scope, web
     $scope.cards = [{name: 'Copper', desc: 'Worth 1', type: 'treasure'}, {name: 'Estate', desc: 'Worth 1 Victory Point', type: 'victory'}, {name: 'Cellar', desc:'Dupa', type: 'action'}];
 
     webSocket.register(function(message) {
-        var data = JSON.parse(message);
+        var data = JSON.parse(message).state;
         console.log(data);
         $scope.actions = data.actions || 0;
         $scope.rejects = data.rejects || 0;
